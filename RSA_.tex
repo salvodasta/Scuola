@@ -1,0 +1,153 @@
+\documentclass[10pt,a4paper]{article}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{tikz}
+
+\usepackage{marginnote}
+
+\usetikzlibrary{chains,fit,shapes}
+\usetikzlibrary{chains,fit,shapes}
+\usetikzlibrary{automata,positioning}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.arrows}
+\usepackage{array}
+
+
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1, breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true] {hyperref}
+
+\usepackage[left=2cm,right=6cm,top=1cm,bottom=2cm]{geometry}
+
+
+\lstnewenvironment{codice_arduino}[1][]
+{\lstset{basicstyle=texttt, columns=fullflexible,
+keywordstyle=\color{red}\bfseries, commentstyle=\color{blue},
+language=java, basicstyle=\small,
+numbers=left, numberstyle=\tiny,
+stepnumber=2, numbersep=5pt, frame=shadowbox, #1}}{}
+
+\begin{document}
+
+
+\title{Crittografia asimmetrica: RSA }
+\author{Prof. Salvatore D'Asta}
+
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Algoritmo RSA}
+%\begin{tikzpicture}[inner sep=2mm]
+%%\draw [help lines] (0,0) grid (3,3);
+%\node [circle ,	draw=black,fill=yellow,text=black ]  (t1) at (0,3) {$Alice$};
+%
+%\node [circle ,	draw=black,fill=yellow,text=black ]  (t2) at (3,3) {$Bob$};
+%
+%
+%\draw [-latex,thick, bend right] (t1) to (t2);
+%\draw [-latex,thick, bend right] (t2) to (t1);
+%\node[align=left] (punto) at (1,0) {\textit{Alice riceve da Bob un messaggio criptato}};
+%%\draw [-latex, bend right,draw=green] (A) to (t2);
+%%\draw [-latex, bend right] (y) to (y);
+%\end{tikzpicture}
+
+\begin{tikzpicture}[inner sep=2mm]
+	[shorten >=3pt,node distance=3cm,on grid,auto]
+\node[state, fill=yellow,label=below:$$] (A)   {$Alice$};
+\node[state, fill=yellow,label=below:$$][right =of A] (B)   {$ Bob $};
+%\path[->]
+\draw [-latex,thick, bend right] (A) edge[below ]  node{$(e,N)$} (B);
+\draw [-latex,thick, bend right] (B) edge[above ] node{$ C $} (A);
+%\draw [-latex,thick, bend left] (A) node{$ (d,N) $} (A);
+%(A) edge  node{$ (e,N) $} (B)
+%(B) edge  node{$ C $} (A);
+\end{tikzpicture}
+Alice vuole consentire a Bob di inviarle un messaggio $ m $ segreto.
+\begin{enumerate}
+	\item 
+	\begin{itemize}
+		\item Sceglie due numeri primi $ p $ e $ q $ e calcola $ N=p\times q $.
+		\item Calcola $ \varphi(N)=(p-1)\times (q-1) $. 
+		\item Trova $ 0<e<N $ in modo che $ MCD(e,\varphi(N))=1 $ (cioè siano coprimi).\\ La coppia $ (e,N) $ costituisce la chiave pubblica e viene inviata a Bob.
+		\item Alice poi crea la sua chiave privata $ \mathbf{(d,N)} $ trovando $ d $ tale che $ \boxed{e\times d\equiv 1 \mod \varphi(N) } $.
+	\end{itemize}
+	\item Bob ricevuto $ (e,N) $ calcola: \[ m^e \mod N=C \] e lo invia a Alice. Quest'ultima per decifrare il messaggio eseguirà:\[ C^d \mod N =m \]
+\end{enumerate}
+
+
+
+
+
+
+\subsection{Perchè RSA funziona?}
+Sappiamo che:
+$ \boxed{C=m^e \mod N} \Rightarrow C^d \mod N=m^{e\times d} \mod N$\\ inoltre  \[\boxed{ e\times d \equiv1 \mod \varphi(N)} \] che equivale a:\[ e\times d \mod \varphi(N) =1 \]
+allora posso scrivere: \[ e\times d=k(\varphi(N))+1=k(p-1)(q-1)+1 \] e quindi:
+\[ m^{e\times d} \mod N=m^{k(p-1)(q-1)+1} 	\mod N=m^{k(p-1)(q-1)}\times m 	\mod N \]
+Se dimostriamo che $\boxed{ m^{k(p-1)(q-1)} 	\mod N=1 }$ otteniamo la tesi. 
+\\\\
+Poiché \[m^{k(p-1)(q-1)} 	\mod q=[m^{q-1}]^{k(p-1)} 	\mod q  \]
+e per il \textit{piccolo Teorema di Fermat}: \[\boxed{ m^{q-1} \equiv 1 \mod q} \]
+si ha allora: \[ (m^{(q-1)})^{k\mathbf{(p-1)}} 	\mod q=1^{k(p-1)} 	\mod q=1 \] analogamente:
+\[m^{k(p-1)(q-1)} 	\mod p=[m^{p-1}]^{k(q-1)} 	\mod p=1^{k(q-1)} \mod p=1  \]
+ \\\\
+ Dai due risultati:{ \marginpar{ \tiny\textrm   \textbf{teorema cinese del resto.} 
+\[  \left\{
+ \begin{array}{rl}
+ x\equiv a  \mod p   \\
+ x\equiv b \mod q 
+ \end{array}
+ \right.  \]
+ Se $ p \mbox{ e }q \mbox{ sono coprimi } $
+ $ \exists! \mbox{ la soluzione } x  \mbox{ modulo }  pq $ }
+  	
+ } [1cm]
+  \[m^{k(p-1)\mathbf{(q-1)}} 	\mod q=1\]  \[  m^{k(q-1)\mathbf{(p-1)}} 	\mod p=1  \]
+  Che possiamo scrivere come:
+  \[ \left\{
+     \begin{array}{rl}
+     1\equiv a \mod q\\
+     1\equiv b \mod p
+     \end{array}
+     \right.   \]
+     Indicando con $\boxed{a=m^{k(p-1)\mathbf{(q-1)}} } $ e con $ \boxed{b=m^{k(q-1)\mathbf{(p-1)}}} $
+ Possiamo quindi applicare  il \textit{teorema cinese del resto}  e   scrivere:
+ 
+ \[ m^{k(p-1)(q-1)} 	\mod (q\times p)= m^{k(p-1)(q-1)} 	\mod N=1 \]  
+\subsection{Il teorema cinese del resto: una semplice applicazione}
+Supponiamo di dover contare un esercito di uomini sapendo solo che:
+\begin{itemize}
+	\item disposti in 7 file rimangono 3 soldati  nell'ultima riga;
+	\item disposti in 8 file ne rimangono 5 nell'ultima riga;
+\end{itemize}
+. In pratica il problema consiste nel risolvere il seguente sistema:
+\[ 
+\left\{
+\begin{array}{rl}
+ x\equiv 3 \mod 7\\
+ x\equiv 5 \mod 8 
+\end{array}
+\right.
+ \] 
+La prima equazione del sistema dice che $ x=k*7+3 $ mentre per la seconda deve aversi $ x=k*8+5 $ con $ k \in \mathbb{Z}=\{\mbox{Insieme degli Interi}\} $\\ Facendo variare $ k=1,2,\dots  $ dovrò cercare il primo valore comune alle 2 espressioni. Questo valore esisterà se i due moduli sono coprimi.
+\[ x=k*7+3 \mbox{ dove k è: }1,2,\dots \mbox{ darà } x=10,17,24,31,38,\mathbf{45},52 \dots \]
+\[ x=k*8+5 \mbox{ dove k è: }1,2,\dots \mbox{ darà } x=15,21,29,37,\mathbf{45},53,\dots \]  
+La soluzione sarà dunque:\[ \fbox{x=45}  \]
+Questo significa che l'esercito sarà costituito da 45 soldati.
+\pagebreak
+
+
+
+
+
+\end{document}

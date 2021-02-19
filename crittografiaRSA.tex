@@ -1,0 +1,75 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{tikz}
+\usetheme{AnnArbor}
+\setbeamercovered{dynamic}
+\usepackage{default}
+ \usepackage{cancel}
+\title{RSA (Crittografia Asimmetrica)}
+\author{Prof. Salvatore D'Asta}
+\begin{document}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritmo RSA}
+Alice vuole consentire a Bob di inviarle un messaggio $ m $ segreto.
+\begin{enumerate}
+	\item 
+	\begin{itemize}
+		\item Sceglie due numeri primi $ p $ e $ q $ e calcola $ N=p\times q $.
+		\item Calcola $ \phi(N)=(p-1)\times (q-1) $. 
+		\item Trova $ 0<e<N $ in modo che $ MCD(e,\phi(N))=1 $ (cioè siano coprimi).\\ La coppia $ (e,N) $ costituisce la chiave pubblica e viene inviata a Bob.
+		\item Alice poi crea la sua chiave privata $ \mathbf{(d,N)} $ trovando $ d $ tale che $ d \equiv e \mod N $ ossia $ \boxed{e\times d\equiv 1 \mod N } $.
+	\end{itemize}
+	\item Bob ricevuto $ (e,N) $ calcola: \[ C=m^e \mod N \] e lo invia a Alice. Quest'ultima per decifrare il messaggio eseguirà:\[ m=C^d \mod N \]
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perchè RSA funziona?}
+Sappiamo che:
+  $  C^d \mod N=m^{e\times d} \mod N$\\ inoltre  \[\boxed{ e\times d \equiv1 \mod \phi(N)} \] che equivale a:\[ e\times d \mod \phi(N) =1 \]
+allora posso scrivere: \[ e\times d=k(\phi(N))+1=k(p-1)(q-1)+1 \] e quindi:
+\[ m^{e\times d} \mod N=m^{k(p-1)(q-1)+1} 	\mod N=m^{k(p-1)(q-1)}\times m 	\mod N \]
+ Se dimostriamo che $\boxed{ m^{k(p-1)(q-1)} 	\mod N=1 }$ otteniamo la tesi.  
+\end{frame}
+\begin{frame}
+Poiché \[m^{k(p-1)(q-1)} 	\mod q=[m^{q-1}]^{k(p-1)} 	\mod q  \]
+e per il Teorema piccolo Teorema di Fermat: \[\boxed{ m^{q-1} \equiv 1 \mod q} \]
+si ha allora: \[ m^{k(p-1)(q-1)} 	\mod q=1^{k(p-1)} 	\mod q=1 \] analogamente:
+\[m^{k(p-1)(q-1)} 	\mod p=[m^{p-1}]^{k(q-1)} 	\mod p=1^{k(q-1)} \mod p=1  \]
+
+\end{frame}
+\begin{frame}
+Dai due risultati: \[m^{k(p-1)(q-1)} 	\mod q=1\]  \[  m^{k(p-1)(q-1)} 	\mod p=1  \]
+Applicando il \textit{teorema cinese del resto} posso scrivere:
+
+\[ m^{k(p-1)(q-1)} 	\mod (q\times p)= m^{k(p-1)(q-1)} 	\mod N=1 \]  
+\end{frame}
+\begin{frame}
+
+equivale a dire che e $ e \times d \equiv 1 \mod N $ e quindi che sono uno l'inverso dell'altro. Quindi calcolare $  c^d \mod N $ equivale a calcolare $ (m^e)^d \mod N=m^{e \times d} $ e poiché $ e \times d \mod N=1 $ Allora sarà  \[ m^1 \mod N =m  \]
+\end{frame}
+
+\begin{frame}
+ Sia $ p $ un numero primo molto grande.  Si può dimostrare che $ \exists g \in \mathbb{Z}_p $ generatore di $ \mathbb{Z}_p $. Questo significa che  $\forall h \in \mathbb{Z},\; \exists k \setminus g^h \mod p=k \in \mathbb{Z}_p $ 
+\end{frame}
+
+\begin{frame}
+Se $ g $ è un generatore di $ \mathbb{Z}_p $ con $ p $ primo, allora:
+\[ g^1 \mod p ; g^2 \mod p ; g^3 \mod p \dots g^p \mod p\]
+Sono distinti e compresi tra $ 1 $ e $ p-1 $.\\
+ Per un qualsiasi intero $ b $ ed un generatore $ g $ di $ N $ si può trovare un esponente unico $ i $ che \[ b\equiv g^i \mod N \] dove $ 0 \leq i \leq (p-1) $
+\end{frame}
+
+\begin{frame}
+  \frametitle{Logaritmo discreto}
+  Si consideri il numero primo  $ p=56509 $ e sia 2  il generatore di $ \mathbb{Z}_p $ calcolare il \textbf{logaritmo discreto} di $ h=38679 $ equivale a trovare l'esponente $ x $ a cui bisogna elevare la base $ 2 $ per ottenerlo in $ \mathbb{Z}_p $.
+  In pratica equivale a risolvere la seguente equazione rispetto all'incognita x:\[ 2^x \mod p=38679 \] 
+\end{frame}
+
+\end{document}
