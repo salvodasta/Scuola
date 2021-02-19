@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  19 FEB 2021 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  19 FEB 2021 23:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1303,27 +1303,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--99
  []
 
 
-Overfull \hbox (3.69609pt too wide) detected at line 112
+Overfull \hbox (57.18909pt too wide) in paragraph at lines 114--114
+[][] 
+ []
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 114.
+
+Overfull \hbox (18.8822pt too wide) detected at line 114
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--112
-\OT1/lmr/m/n/5 Se
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
+\OT1/lmr/m/n/10 Se
  []
 
 
-Overfull \hbox (0.76375pt too wide) in paragraph at lines 112--112
-\OML/lmm/m/it/5 p[]q[]$
+Overfull \hbox (25.51555pt too wide) in paragraph at lines 114--114
+\OML/lmm/m/it/9 p[]q[]$
  []
 
 
-Overfull \hbox (26.56325pt too wide) in paragraph at lines 112--112
-\OMS/lmsy/m/n/5 9\OT1/lmr/m/n/5 ![]\OML/lmm/m/it/5 x[]pq$ 
+Overfull \hbox (61.49457pt too wide) in paragraph at lines 114--114
+\OMS/lmsy/m/n/9 9\OT1/lmr/m/n/9 ![]\OML/lmm/m/it/9 x[]pq$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--113
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--115
 
  []
 
@@ -1337,28 +1349,28 @@ Package rerunfilecheck Info: File `RSA_.out' has not changed.
 (rerunfilecheck)             Checksum: AE513C7C2C7FD3499ABBA8E1B931A4D4;684.
  ) 
 Here is how much of TeX's memory you used:
- 24806 strings out of 494912
- 457280 string characters out of 6180265
+ 24819 strings out of 494912
+ 457418 string characters out of 6180265
  546617 words of memory out of 5000000
- 27695 multiletter control sequences out of 15000+600000
- 52773 words of font info for 53 fonts, out of 8000000 for 9000
+ 27703 multiletter control sequences out of 15000+600000
+ 62670 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,10n,71p,789b,744s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
-c/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/u
-sr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/publi
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dv
+ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/publi
 c/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/public/lm/l
 mex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.p
+fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr
-/share/texmf/fonts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/publi
-c/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/te
+/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/te
 xmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
-sy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texlive/t
+sy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on RSA_.pdf (3 pages, 244067 bytes).
+Output written on RSA_.pdf (3 pages, 242758 bytes).
 PDF statistics:
  117 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream

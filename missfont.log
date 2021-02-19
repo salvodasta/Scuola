@@ -1,1 +1,6 @@
 mktextfm ecrm1000
+mktextfm pncb7t
+mktextfm nullfont
+mktextfm pbkd7t
+mktextfm nullfont
+mktextfm nullfont
