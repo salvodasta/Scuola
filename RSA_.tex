@@ -92,7 +92,7 @@ Alice vuole consentire a Bob di inviarle un messaggio $ m $ segreto.
 \subsection{Perchè RSA funziona?}
 Sappiamo che:
 $ \boxed{C=m^e \mod N} \Rightarrow C^d \mod N=m^{e\times d} \mod N$\\ inoltre  \[\boxed{ e\times d \equiv1 \mod \varphi(N)} \] che equivale a:\[ e\times d \mod \varphi(N) =1 \]
-allora posso scrivere: \[ e\times d=k(\varphi(N))+1=k(p-1)(q-1)+1 \] e quindi:
+allora posso scrivere: \[ e\times d=k\times (\varphi(N))+1=k(p-1)(q-1)+1 \] e quindi:
 \[ m^{e\times d} \mod N=m^{k(p-1)(q-1)+1} 	\mod N=m^{k(p-1)(q-1)}\times m 	\mod N \]
 Se dimostriamo che $\boxed{ m^{k(p-1)(q-1)} 	\mod N=1 }$ otteniamo la tesi. 
 \\\\
